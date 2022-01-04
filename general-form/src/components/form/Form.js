@@ -7,31 +7,14 @@ import Checkbox from '@tds/core-checkbox';
 import Text from '@tds/core-text';
 import Step from "../step/Step";
 import Info from "../travelinfo/Info";
+import InputText from "../inputText/InputText";
 
 const Form = () => {
   return (
     <FlexGrid>
       <Step />
       <Info />
-      <FlexGrid.Row >
-        <FlexGrid.Col xs={5}>
-          <Box vertical={1}>
-            <Heading level="h3" >Tell us a bit about yourself</Heading>
-          </Box>
-        </FlexGrid.Col>
-      </FlexGrid.Row>
-      <FlexGrid.Row distribute="between">
-        <FlexGrid.Col xs={5}>
-          <Box vertical={1}>
-            <Input label="First name" />
-          </Box>
-        </FlexGrid.Col>
-        <FlexGrid.Col xs={5}>
-          <Box vertical={1}>
-            <Input label="Last name" />
-          </Box>
-        </FlexGrid.Col>
-      </FlexGrid.Row>
+     <InputText subheading="Tell us a bit about yourself" input={["First name","Last name"]} />
       <FlexGrid.Row distribute="between">
         <FlexGrid.Col xs={12}>
           <Box vertical={2}>
@@ -52,7 +35,20 @@ const Form = () => {
             <Checkbox name="contact" value="phone" label="Phone" />
           </Box>
         </FlexGrid.Col>
+        <InputText 
+      input={["Email","Phone"]}
+      />
       </FlexGrid.Row>
+        <InputText 
+      subheading="Tell us about the location where you experienced the issue" 
+      input={["Wi-Fi network name or SSID","Device Wi-Fi MAC address"]}
+      />
+       <InputText 
+      input={["Company name","Company phone number"]}
+      />
+       <InputText 
+      input={["Where did you experience the issue","City"]}
+      />
     </FlexGrid>
   );
 }
