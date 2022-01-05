@@ -7,14 +7,33 @@ import Checkbox from '@tds/core-checkbox';
 import Text from '@tds/core-text';
 import Step from "../step/Step";
 import Info from "../travelinfo/Info";
-import InputText from "../inputText/InputText";
+import Select from '@tds/core-select';
+import InputFeedback from '@tds/core-input-feedback';
+import Tooltip from '@tds/core-tooltip'
 
 const Form = () => {
   return (
     <FlexGrid>
       <Step />
       <Info />
-     <InputText subheading="Tell us a bit about yourself" input={["First name","Last name"]} />
+
+      <FlexGrid.Row distribute="between">
+        <FlexGrid.Col xs={8}>
+          <Box vertical={4}>
+            <Heading level="h3" >Tell us a bit about yourself</Heading>
+          </Box>
+        </FlexGrid.Col>
+        <FlexGrid.Col xs={5}>
+          <Box vertical={1}>
+            <Input label="First name*" feedback="error" />
+          </Box>
+        </FlexGrid.Col>
+        <FlexGrid.Col xs={5}>
+          <Box vertical={1}>
+            <Input label="Last name*" required />
+          </Box>
+        </FlexGrid.Col>
+      </FlexGrid.Row>
       <FlexGrid.Row distribute="between">
         <FlexGrid.Col xs={12}>
           <Box vertical={2}>
@@ -35,20 +54,100 @@ const Form = () => {
             <Checkbox name="contact" value="phone" label="Phone" />
           </Box>
         </FlexGrid.Col>
-        <InputText 
-      input={["Email","Phone"]}
-      />
+        <FlexGrid.Row distribute="between">
+          <FlexGrid.Col xs={5}>
+            <Box vertical={1}>
+              <Input label="Email*" />
+            </Box>
+          </FlexGrid.Col>
+          <FlexGrid.Col xs={5}>
+            <Box vertical={1}>
+              <Input label="Phone*" type="tel" pattern="[0-9]{10}" maxLength="10" defaultValue="+1-XXX-XXX-XXX" required />
+            </Box>
+          </FlexGrid.Col>
+        </FlexGrid.Row>
       </FlexGrid.Row>
-        <InputText 
-      subheading="Tell us about the location where you experienced the issue" 
-      input={["Wi-Fi network name or SSID","Device Wi-Fi MAC address"]}
-      />
-       <InputText 
-      input={["Company name","Company phone number"]}
-      />
-       <InputText 
-      input={["Where did you experience the issue","City"]}
-      />
+      <FlexGrid.Col xs={8}>
+        <Box vertical={4}>
+          <Heading level="h3" >Tell us about business</Heading>
+        </Box>
+      </FlexGrid.Col>
+      <FlexGrid.Row distribute="between">
+        <FlexGrid.Col xs={5}>
+          <Box vertical={1}>
+            <Select
+              label="Wi-Fi network name or SSID"
+              placeholder="Choose"
+              options={[
+                { text: 'Alberta', value: 'AB' },
+                { text: 'British Columbia', value: 'BC' },
+                { text: 'Ontario', value: 'ON' },
+                { text: 'Quebec', value: 'QC' },
+              ]}
+            />
+          </Box>
+        </FlexGrid.Col>
+        <FlexGrid.Col xs={5}>
+          <Box vertical={1}>
+            <Input
+              label="Device Wi-Fi MAC address"
+              type="text"
+              tooltip={
+                <Tooltip copy="en">
+                Tooltip hint message goes here.
+                </Tooltip>
+              }
+            />
+          </Box>
+        </FlexGrid.Col> 
+      </FlexGrid.Row>
+      <FlexGrid.Col xs={8}>
+        <Box vertical={4}>
+          <Heading level="h3" >Tell us about the location where you experienced the issue</Heading>
+        </Box>
+      </FlexGrid.Col>
+      <FlexGrid.Row distribute="between">
+      <FlexGrid.Col xs={5}>
+          <Box vertical={1}>
+            <Input label="Company name" type="text" feedback="error" />
+          </Box>
+        </FlexGrid.Col>
+        <FlexGrid.Col xs={5}>
+          <Box vertical={1}>
+            <Input label="Company phone number" type="number" required />
+          </Box>
+        </FlexGrid.Col>
+     
+        <FlexGrid.Col xs={5}>
+          <Box vertical={3}>
+            <Input label="Where did you experiance the issue" type="text"  />
+          </Box>
+        </FlexGrid.Col>
+        <FlexGrid.Col xs={5}>
+          <Box vertical={3}>
+            <Input label="City*" type="text" />
+          </Box>
+        </FlexGrid.Col>
+        <FlexGrid.Col xs={5}>
+          <Box vertical={1}>
+          <Select
+              label="Province"
+              placeholder="Choose"
+              options={[
+                { text: 'Alberta', value: 'AB' },
+                { text: 'British Columbia', value: 'BC' },
+                { text: 'Ontario', value: 'ON' },
+                { text: 'Quebec', value: 'QC' },
+              ]}
+            />
+          </Box>
+        </FlexGrid.Col>
+        <FlexGrid.Col xs={5}>
+          <Box vertical={1}>
+            <Input label="Date" type="date" defaultValue="MM/DD/YY"/>
+          </Box>
+        </FlexGrid.Col>
+        </FlexGrid.Row>
     </FlexGrid>
   );
 }

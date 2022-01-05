@@ -8,7 +8,6 @@ const InputText = (props) => {
   console.log(props.input);
   return (
     <FlexGrid>
-
       <FlexGrid.Row >
         <FlexGrid.Col xs={8}>
           <Box vertical={3}>
@@ -17,14 +16,12 @@ const InputText = (props) => {
         </FlexGrid.Col>
       </FlexGrid.Row>
       <FlexGrid.Row distribute="between">
-        {props.input.map((e) => (
-
         <FlexGrid.Col xs={5}>
           <Box vertical={1}>
-            <Input label={e} />
+            <Input label="firstname" feedback="error" error="Error Mesage"/>
           </Box>
         </FlexGrid.Col>
-        ))}
+        
         
       </FlexGrid.Row>
     </FlexGrid>
